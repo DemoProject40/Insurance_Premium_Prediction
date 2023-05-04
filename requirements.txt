@@ -4,4 +4,6 @@ Flask
 seaborn
 matplotlib
 ipykernal
+scikit-learn
+xgboost
 # -e .
