@@ -4,6 +4,7 @@ Flask
 seaborn
 matplotlib
 ipykernal
-scikit-learn
+scikit-learn==0.18
+sklearn
 xgboost
 # -e .
