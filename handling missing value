@@ -1,0 +1,46 @@
+def get_data_transformation_object(self):
+        try:
+            logging.info('Data Transformation initiated')
+            # Define which columns should be ordinal-encoded and which should be scaled
+            categorical_cols = ['sex', 'smoker', 'region']
+            numerical_cols = ['age', 'bmi', 'children', 'expenses']
+            
+            # Define the custom ranking for each ordinal variable
+            all_region=['southwest', 'southeast', 'northwest', 'northeast']
+            sex=['male','female']
+            Smoker=['yes','no']
+            
+            logging.info('Pipeline Initiated')
+
+            ## Numerical Pipeline
+            numerical_transformer=Pipeline(
+                steps=[
+                ('imputer',SimpleImputer(strategy='median')),
+                ('scaler',StandardScaler())
+
+                ]
+
+            )
+            # Categorigal Pipeline
+            categorical_transformer=Pipeline(
+                steps=[
+                ('imputer',SimpleImputer(strategy='most_frequent')),
+                ('ordinalencoder',OrdinalEncoder(categories=[all_region,sex,Smoker])),
+                ('scaler',StandardScaler())
+                ]
+            
+            )
+            logging.info("1")
+            preprocessor = ColumnTransformer([
+                 ('num', numerical_transformer, numerical_cols),
+                 ('cat', categorical_transformer, categorical_cols)
+                ]
+            )
+            logging.info("2")
+            return preprocessor
+            
+            logging.info('Pipeline Completed')
+
+        except Exception as e:
+            logging.info("Error in Data Trnasformation")
+            raise CustomException(e,sys)

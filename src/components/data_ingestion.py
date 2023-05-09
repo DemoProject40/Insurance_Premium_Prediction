@@ -6,6 +6,8 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 
+from src.components.data_transformation import DataTransformation
+
 @dataclass
 class Ingestionconfig:
     train_data_path:str=os.path.join('artifacts','train.csv')
@@ -20,7 +22,7 @@ class dataIngestion:
     def start_data_ingestion(self):
         logging.info('Data ingestion methods Starts')
         try:
-            df=pd.read_csv('notebooks/data/insurance.csv')
+            df=pd.read_csv(os.path.join('notebooks/data','insurance.csv'))
             logging.info('Failed to load the pandas dataframe csv file')
             os.makedirs(os.path.dirname(self.ingestion_config.raw_data_path),exist_ok=True)
             df.to_csv(self.ingestion_config.raw_data_path,index=False)
@@ -43,4 +45,9 @@ class dataIngestion:
 #run data ingestion
 if __name__=='__main__':
     obj=dataIngestion()
-    train_data,test_data=obj.start_data_ingestion()
+    train_data_path,test_data_path = obj.start_data_ingestion()
+    data_transformation = DataTransformation()
+    train_arr,test_arr,_ = data_transformation.initiate_data_transformation(train_data_path,test_data_path)
+
+
+
