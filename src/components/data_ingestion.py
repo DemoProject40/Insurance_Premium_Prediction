@@ -15,7 +15,7 @@ class Ingestionconfig:
     raw_data_path:str=os.path.join('artifacts','raw.csv')
 
 
-class dataIngestion:
+class DataIngestion:
     def __init__(self):
         self.ingestion_config=Ingestionconfig()
 
@@ -42,12 +42,5 @@ class dataIngestion:
             logging.info('Exception occured the data Ingestion stage')
             raise CustomException(e,sys)
         
-#run data ingestion
-if __name__=='__main__':
-    obj=dataIngestion()
-    train_data_path,test_data_path = obj.start_data_ingestion()
-    data_transformation = DataTransformation()
-    train_arr,test_arr,_ = data_transformation.initiate_data_transformation(train_data_path,test_data_path)
-
 
 
