@@ -14,8 +14,8 @@ class Predict_Pileline:
 
     def predict(self,features):
         try:
-            preprecessor_path = os.path.join('artifatcs','preprocessor.pkl')
-            model_path = os.laod.join('artifacts','preprocessor.pkl')
+            preprecessor_path = os.path.join('artifacts','preprocessor.pkl')
+            model_path = os.laod.join('artifacts','model.pkl')
 
             preprocessor = load_model(preprecessor_path)
             model = laod_model(model_path)
