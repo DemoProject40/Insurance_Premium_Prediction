@@ -26,7 +26,7 @@ def predict_datapoint():
 		
 		final_df = data.get_data_as_dataframe()
 		predict_pipeline = Predict_Pileline()
-		pred = predict_pipeline.predicts(final_df)
+		pred = predict_pipeline.predict(final_df)
 
 		results = round(pred[0],3)
 

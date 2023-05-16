@@ -8,22 +8,23 @@ from src.utils import load_model
 import sys
 import os
 
-class Predict_Pileline:
-    def __init__():
+class Predict_Pileline:   
+    def __init__(self):
         pass
 
     def predict(self,features):
         try:
             preprecessor_path = os.path.join('artifacts','preprocessor.pkl')
-            model_path = os.laod.join('artifacts','model.pkl')
+            model_path = os.path.join('artifacts','model.pkl')
 
             preprocessor = load_model(preprecessor_path)
-            model = laod_model(model_path)
+            model = load_model(model_path)
+            logging.info('preprocesor',preprocessor)
+            logging.info('preprocesor',model)
+
             data_scaled = preprocessor.transform(features)
 
             pred = model.predict(data_scaled)
-            
-            return pred
 
         except Exception as e:
             logging.info('Exception ocur in predicted pipeline')
@@ -45,7 +46,7 @@ class Custom_Data:
                 self.smoker = smoker,
                 self.region = region
 
-    def get_data_as_dataframe():
+    def get_data_as_dataframe(self):
         try:
             custom_data_input_dict = {
                 'age' : [self.age],
