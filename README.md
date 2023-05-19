@@ -12,3 +12,8 @@ conda activate \venv
 ```
 pip  install -r requirments.txt
 ```
+
+### run the flask application
+```
+python app.py
+```
